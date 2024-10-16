@@ -1,0 +1,18 @@
+<% if @user.errors.present? %>
+<h3>エラーがあります。</h3>
+<ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<h1>新規登録</h1>
+
+<%= form_with model: @user do |f| %>
+  <p><%= f.label :uid, 'ID：' %><%= f.text_field :uid %></p>
+  <p><%= f.label :pass, 'PASS：' %><%= f.text_field :pass %></p>
+  <p><%= f.submit '登録' %></p>
+<% end %>
+
+<%= link_to '戻る', root_path %>
