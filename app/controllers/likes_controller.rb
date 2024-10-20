@@ -13,5 +13,5 @@ class LikesController < ApplicationController
     tweet.likes.find_by(user_id: user.id).destroy
     redirect_to root_path
   end
-    
+  
 end
