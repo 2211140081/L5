@@ -9,10 +9,11 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(uid: params[:user][:uid], pass: params[:user][:pass])
-    if @user.save
+    signup_password = BCrypt::Password.create(params[:user][:pass])
+    u = User.new(uid: params[:user][:uid], pass: signup_password)
+    if u.save
       flash[:notice] = '登録しました。'
-      redirect_to root_path
+      redirect_to users_path
     else
       render 'new', status: :unprocessable_entity
     end
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.destroy
       flash[:notice] = '削除しました。'
-      redirect_to root_path
+      redirect_to users_path
     else
       render 'index', status: :unprocessable_entity
     end

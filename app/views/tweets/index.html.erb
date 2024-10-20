@@ -1,0 +1,16 @@
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% end %>
+
+<h1>投稿一覧</h1>
+
+<% @tweets.each do |tw| %>
+  <p><%= tw.user_id %>：<%= tw.message %></p>
+  <%= link_to '削除', tweet_path(tw), data: {turbo_method: :delete} %>
+  <%= link_to '<3', likes_path(tweet_id: tw.id), data: {turbo_method: :post} %>
+  <%= link_to '<3削除', like_path(tw), data: {turbo_method: :delete} %>
+  <%= tw.like_users.include?(User.find_by(uid: session[:login_uid])) %>
+<% end %>
+
+<p><%= link_to 'つぶやく', new_tweet_path %></p>
+<p><%= link_to 'ログアウト', top_logout_path %></p>
