@@ -25,8 +25,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: render_v6wv
-  username: render_v6wv_user
+  database: render_l5
+  username: render_l5_user
   password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
   url: <%= ENV['DATABASE_URL'] %>
   #database: storage/production.sqlite3
